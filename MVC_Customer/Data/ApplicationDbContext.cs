@@ -5,16 +5,12 @@ namespace MVC_Customer.Data
 {
     public class ApplicationDbContext : DbContext
     {
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        {
+        }
+
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Item> Items { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer("YourConnectionString");
-            }
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
